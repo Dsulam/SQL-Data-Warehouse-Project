@@ -30,53 +30,43 @@ Data Modeling: Developing fact and dimension tables optimized for analytical que
 Analytics & Reporting: Creating SQL-based reports and dashboards for actionable insights.
 🎯 This repository is an excellent resource for professionals and students looking to showcase expertise in:
 
-SQL Development
-Data Architect
-Data Engineering
-ETL Pipeline Developer
-Data Modeling
-Data Analytics
+-SQL Development
+-Data Architect
+-Data Engineering
+-ETL Pipeline Developer
+-Data Modeling
+-Data Analytics
 
-- **ETL pipelines** — Stored procedures that truncate and reload each layer,
-  with per-table load logging and TRY/CATCH error handling.
-- **Data quality** — Automated checks for null and duplicate primary keys.
-  Deduplication with `ROW_NUMBER()` to retain the most recent record per entity.
-- **Integration** — Reconciled mismatched customer/product keys between CRM and ERP
-  (prefix stripping, delimiter normalization) so the two systems join cleanly.
-- **Data modeling** — Gold layer modeled as a star schema: `fact_sales` with
-  conformed `dim_customers` and `dim_products` dimensions.
+🛠️ Important Links & Tools:
+Everything is for Free!
 
----
+Datasets: Access to the project dataset (csv files).
+SQL Server Express: Lightweight server for hosting your SQL database.
+SQL Server Management Studio (SSMS): GUI for managing and interacting with databases.
+Git Repository: Set up a GitHub account and repository to manage, version, and collaborate on your code efficiently.
+DrawIO: Design data architecture, models, flows, and diagrams.
 
-## Data Quality Highlights
+🚀 Project Requirements
+Building the Data Warehouse (Data Engineering)
+Objective
+Develop a modern data warehouse using SQL Server to consolidate sales data, enabling analytical reporting and informed decision-making.
 
-- Detected and removed duplicate and null primary keys in the customer table
-  (6 problem keys in source → 0 after cleansing).
-- Standardized categorical values (gender, marital status, country, product line)
-  from raw source codes to readable, consistent labels.
-- Recalculated invalid sales figures and derived missing prices from
-  quantity × price logic.
-- Resolved gender conflicts between CRM and ERP using CRM as the source of truth.
+Specifications
+Data Sources: Import data from two source systems (ERP and CRM) provided as CSV files.
+Data Quality: Cleanse and resolve data quality issues prior to analysis.
+Integration: Combine both sources into a single, user-friendly data model designed for analytical queries.
+Scope: Focus on the latest dataset only; historization of data is not required.
+Documentation: Provide clear documentation of the data model to support both business stakeholders and analytics teams.
 
----
+BI: Analytics & Reporting (Data Analysis)
+Objective
+Develop SQL-based analytics to deliver detailed insights into:
 
-## Project Status
+Customer Behavior
+Product Performance
+Sales Trends
+These insights empower stakeholders with key business metrics, enabling strategic decision-making.
 
-- [x] Bronze layer — raw ingestion
-- [x] Silver layer — cleansing, deduplication, integration
-- [x] Gold layer — star schema (in progress)
 
----
-
-## Tech Stack
-
-- SQL Server / T-SQL
-- SQL Server Management Studio (SSMS)
-- Medallion architecture (Bronze / Silver / Gold)
-- Star schema dimensional modeling
-
----
-
-## Repository Structure
 
 
