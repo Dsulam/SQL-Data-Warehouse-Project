@@ -1,81 +1,63 @@
-Data Warehouse and Analytics Project
-Welcome to the Data Warehouse and Analytics Project repository! 🚀
-This project demonstrates a comprehensive data warehousing and analytics solution, from building a data warehouse to generating actionable insights. Designed as a portfolio project, it highlights industry best practices in data engineering and analytics.
+# SQL Data Warehouse — CRM & ERP Integration
 
-🏗️ Data Architecture
-The data architecture for this project follows Medallion Architecture Bronze, Silver, and Gold layers: Data Architecture
 
-Bronze Layer: Stores raw data as-is from the source systems. Data is ingested from CSV Files into SQL Server Database.
-Silver Layer: This layer includes data cleansing, standardization, and normalization processes to prepare data for analysis.
-Gold Layer: Houses business-ready data modeled into a star schema required for reporting and analytics.
-📖 Project Overview
-This project involves:
+Quick pause before I hand you text — because copying this one carries a real risk, and it's different from the resume bullets.
+That README is Baraa's, and this is a known tutorial with 807 stars and 770k video views. If you copy his README verbatim into your own repo, two things happen. Recruiters who've seen the tutorial recognize it instantly — and a lot of data/supply-chain recruiters have. And it's got his name, YouTube links, PayPal, and newsletter all through it. Pasting that as-is reads as "I followed a tutorial and copied the README too," which undercuts the exact credibility the project is supposed to give you.
+The MIT license means you may reuse it with attribution. But "allowed" and "helps you get hired" aren't the same thing here.
+So rather than paste his text, let me give you a README written for your repo, in your voice, describing what you actually built. Same structure he taught you, none of the giveaways. This is genuinely better for you — and it's a thing an interviewer might ask about ("did you write this?"), so you want to be able to say yes.
+Here it is, ready to paste into your own README.md:
+markdown# SQL Data Warehouse — CRM & ERP Integration
 
-Data Architecture: Designing a Modern Data Warehouse Using Medallion Architecture Bronze, Silver, and Gold layers.
-ETL Pipelines: Extracting, transforming, and loading data from source systems into the warehouse.
-Data Modeling: Developing fact and dimension tables optimized for analytical queries.
-Analytics & Reporting: Creating SQL-based reports and dashboards for actionable insights.
-🎯 This repository is an excellent resource for professionals and students looking to showcase expertise in:
+An end-to-end data warehouse built in SQL Server, consolidating customer,
+product, and sales data from two source systems (CRM and ERP) into an
+analytics-ready star schema. Built to practice data engineering fundamentals:
+ETL, data quality, integration, and dimensional modeling.
 
-SQL Development
-Data Architect
-Data Engineering
-ETL Pipeline Developer
-Data Modeling
-Data Analytics
-🛠️ Important Links & Tools:
-Everything is for Free!
+---
 
-Datasets: Access to the project dataset (csv files).
-SQL Server Express: Lightweight server for hosting your SQL database.
-SQL Server Management Studio (SSMS): GUI for managing and interacting with databases.
-Git Repository: Set up a GitHub account and repository to manage, version, and collaborate on your code efficiently.
-DrawIO: Design data architecture, models, flows, and diagrams.
-Notion: Get the Project Template from Notion
-Notion Project Steps: Access to All Project Phases and Tasks.
-🚀 Project Requirements
-Building the Data Warehouse (Data Engineering)
-Objective
-Develop a modern data warehouse using SQL Server to consolidate sales data, enabling analytical reporting and informed decision-making.
+## Architecture
 
-Specifications
-Data Sources: Import data from two source systems (ERP and CRM) provided as CSV files.
-Data Quality: Cleanse and resolve data quality issues prior to analysis.
-Integration: Combine both sources into a single, user-friendly data model designed for analytical queries.
-Scope: Focus on the latest dataset only; historization of data is not required.
-Documentation: Provide clear documentation of the data model to support both business stakeholders and analytics teams.
-BI: Analytics & Reporting (Data Analysis)
-Objective
-Develop SQL-based analytics to deliver detailed insights into:
+The warehouse follows a three-layer medallion architecture:
 
-Customer Behavior
-Product Performance
-Sales Trends
-These insights empower stakeholders with key business metrics, enabling strategic decision-making.
+- **Bronze** — Raw data ingested as-is from CRM and ERP source files. No transformation.
+- **Silver** — Cleansed and standardized: null handling, type casting, deduplication,
+  value normalization, and key alignment across systems.
+- **Gold** — Business-ready star schema (fact and dimension tables) for reporting.
 
-For more details, refer to docs/requirements.md.
+---
 
-📂 Repository Structure
-data-warehouse-project/
-│
-├── datasets/                           # Raw datasets used for the project (ERP and CRM data)
-│
-├── docs/                               # Project documentation and architecture details
-│   ├── etl.drawio                      # Draw.io file shows all different techniquies and methods of ETL
-│   ├── data_architecture.drawio        # Draw.io file shows the project's architecture
-│   ├── data_catalog.md                 # Catalog of datasets, including field descriptions and metadata
-│   ├── data_flow.drawio                # Draw.io file for the data flow diagram
-│   ├── data_models.drawio              # Draw.io file for data models (star schema)
-│   ├── naming-conventions.md           # Consistent naming guidelines for tables, columns, and files
-│
-├── scripts/                            # SQL scripts for ETL and transformations
-│   ├── bronze/                         # Scripts for extracting and loading raw data
-│   ├── silver/                         # Scripts for cleaning and transforming data
-│   ├── gold/                           # Scripts for creating analytical models
-│
-├── tests/                              # Test scripts and quality files
-│
-├── README.md                           # Project overview and instructions
-├── LICENSE                             # License information for the repository
-├── .gitignore                          # Files and directories to be ignored by Git
-└── requirements.txt                    # Dependencies and requirements for the project
+## What This Project Covers
+
+- **ETL pipelines** — Stored procedures that truncate and reload each layer,
+  with per-table load logging and TRY/CATCH error handling.
+- **Data quality** — Automated checks for null and duplicate primary keys.
+  Deduplication with `ROW_NUMBER()` to retain the most recent record per entity.
+- **Integration** — Reconciled mismatched customer/product keys between CRM and ERP
+  (prefix stripping, delimiter normalization) so the two systems join cleanly.
+- **Data modeling** — Gold layer modeled as a star schema: `fact_sales` with
+  conformed `dim_customers` and `dim_products` dimensions.
+
+---
+
+## Data Quality Highlights
+
+- Detected and removed duplicate and null primary keys in the customer table
+  (6 problem keys in source → 0 after cleansing).
+- Standardized categorical values (gender, marital status, country, product line)
+  from raw source codes to readable, consistent labels.
+- Recalculated invalid sales figures and derived missing prices from
+  quantity × price logic.
+- Resolved gender conflicts between CRM and ERP using CRM as the source of truth.
+
+---
+
+## Tech Stack
+
+- SQL Server / T-SQL
+- SQL Server Management Studio (SSMS)
+- Medallion architecture (Bronze / Silver / Gold)
+- Star schema dimensional modeling
+
+---
+
+## Repository Structure
