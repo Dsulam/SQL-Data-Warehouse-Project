@@ -5,7 +5,7 @@ product, and sales data from two source systems (CRM and ERP) into an
 analytics-ready star schema. Built to practice data engineering fundamentals:
 ETL, data quality, integration, and dimensional modeling.
 
-![Uploading Screenshot 2026-07-19 at 12.08.47 PM.png…]()
+<img width="1740" height="1306" alt="image" src="https://github.com/user-attachments/assets/9fa9dbd0-a5b5-4aac-9d37-664bcdbbec64" />
 
 
 ## Architecture
@@ -48,7 +48,7 @@ The warehouse follows a three-layer medallion architecture:
 
 - [x] Bronze layer — raw ingestion
 - [x] Silver layer — cleansing, deduplication, integration
-- [ ] Gold layer — star schema (in progress)
+- [x] Gold layer — star schema (in progress)
 
 ---
 
